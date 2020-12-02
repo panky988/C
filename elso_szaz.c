@@ -2,8 +2,8 @@
 
 int main()
 {
-    printf("\n  Beadandó feladatok / Ciklusvezető utasítások / 1.feladat\n");
-    printf("  --------------------------------------------------------\n");
+    printf("\n  Ciklusvezető utasítások / Első 100\n");
+    printf("  ----------------------------------\n");
     int i = 0;
     int osszeg = 0;
     printf("  ");
