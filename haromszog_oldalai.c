@@ -6,8 +6,8 @@ int main ()
 {
     int i;
     float oldalak[3];
-    printf("\n  Beadandó feladatok / Szelekció / 4.feladat\n");
-    printf("  -------------------------------------------\n");
+    printf("\n  Szelekció / Háromszög oldalai\n");
+    printf("  -----------------------------\n");
     for (i = 0; i < 3; i++)
     {
         printf("  Kérem a(z) %d. oldal hosszát (cm): ", i+1);
