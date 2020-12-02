@@ -4,6 +4,8 @@
 
 int main()
 {
+    printf("\n  Ciklusvezető utasítások / Kamat\n");
+    printf("  -------------------------------\n");
     int i=0;
     float toke,ido;
     float kamat;
