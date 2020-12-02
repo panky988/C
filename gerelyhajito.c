@@ -4,8 +4,8 @@
 
 int main()
 {
-    printf("\n  Beadandó feladatok / Szelekció / 2.feladat\n");
-    printf("  -------------------------------------------\n");
+    printf("\n  Szelekció / Gerelyhajító\n");
+    printf("  ------------------------\n");
     int i;
     float eredmenyek[3];
     int helyezes=1;
