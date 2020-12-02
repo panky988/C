@@ -4,8 +4,8 @@
 
 void szam_bekeres()
 {
-    printf("\n  Beadandó feladatok / Ciklusvezető utasítások / 2.feladat\n");
-    printf("  --------------------------------------------------------\n");
+    printf("\n  Ciklusvezető utasítások / Rossz adat\n");
+    printf("  --------------------------------------\n");
     float szam;
     printf("  Kérem a számot: ");
     scanf("%f",&szam);
@@ -14,8 +14,8 @@ void szam_bekeres()
         return szam_bekeres();
     }
     
-    printf("\n  Beadandó feladatok / Ciklusvezető utasítások / 3.feladat\n");
-    printf("  --------------------------------------------------------\n");
+    printf("\n  Ciklusvezető utasítások / Rossz adat karakterrel\n");
+    printf("  ------------------------------------------------\n");
     char chr;
     printf("  Kérem a karaktert: ");
     scanf(" %c", &chr);
