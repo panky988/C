@@ -7,8 +7,8 @@ int main()
     float maximum = 20;
     float eredmeny = 0;
     float szazalek = 0;
-    printf("\n  Beadandó feladatok / Szelekció / 3.feladat\n");
-    printf("  -------------------------------------------\n");
+    printf("\n  Szelekció / Dolgozat értekélés\n");
+    printf("  ------------------------------\n");
     printf("  Kérem a pontszámot (X/20): ");
     scanf("%f", &eredmeny);
     
