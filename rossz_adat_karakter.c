@@ -1,4 +1,4 @@
-//2.Folytatás: olvassunk be egy karaktert is, majd írassuk ki annyiszor, mint a beolvasott szám!
+//"rossz_adat.c" folytatás: olvassunk be egy karaktert is, majd írassuk ki annyiszor, mint a beolvasott szám!
 
 #include <stdio.h>
 
