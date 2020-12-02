@@ -1,7 +1,5 @@
-/*
-a.) Írasd ki, hogy jeles volt-e az osztály (minden jegy ötös), vagy nem!
-b.) Írasd ki, hogy hány jeles volt az osztályban!
-*/
+//Írasd ki a hallgatók átlagát az előző feladatok tömbjének segítségével!
+
 #include <stdio.h>
 
 int main(void)
