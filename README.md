@@ -1,2 +1,2 @@
 # C
-C programozás példákkal bemutatva.
+C programozás feladatok.
