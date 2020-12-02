@@ -4,8 +4,8 @@
 
 int main()
 {
-    printf("\n  Beadandó feladatok / Függvények / 4.feladat\n");
-    printf("  -------------------------------------------\n");
+    printf("\n  Függvények / Dupla vektor\n");
+    printf("  -------------------------\n");
     //vektor = x0,y0,x1,y1
     int vektor[] = {5,4,9,15};
     int i=0;
