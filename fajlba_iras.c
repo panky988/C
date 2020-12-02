@@ -4,8 +4,8 @@
 
 int main()
 {
-    printf("\n  Beadandó feladatok / Fájlbeolvasás / 2.feladat\n");
-    printf("  -------------------------------------------\n");
+    printf("\n  Fájlbeolvasás / Fájlba írás\n");
+    printf("  ----------------------------\n");
     FILE *fp;
     fp = fopen("nevek.txt", "w");
     char nev[100], string[100];
