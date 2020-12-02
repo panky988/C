@@ -4,8 +4,8 @@
 
 int main()
 {
-    printf("\n  Beadandó feladatok / Szelekció / 1.feladat\n");
-    printf("  -------------------------------------------\n");
+    printf("\n  Szelekció / Halmazállapot\n");
+    printf("  -------------------------\n");
     int hofok;
     printf("  Kérem a víz hőfokát: ");
     scanf("%d", &hofok);
