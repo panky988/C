@@ -4,8 +4,8 @@
 
 int main()
 {
-    printf("\n  Beadandó feladatok / Függvények / 3.feladat\n");
-    printf("  -------------------------------------------\n");
+    printf("\n  Függvények / Prímszám\n");
+    printf("  ----------------------\n");
     int szam;
     int darab=0;
     printf("  Kérem a számot: ");
