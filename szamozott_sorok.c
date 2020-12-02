@@ -2,11 +2,11 @@
 
 int main()
 {
-    printf("\n  Beadandó feladatok / Fájlkezelés / 1.feladat\n");
-    printf("  -------------------------------------------\n");
-    char string[100];
+    printf("\n  Fájlkezelés / Számozott sorok\n");
+    printf("  -----------------------------\n");
     FILE *fp;
-    fp = fopen("szoveg.txt", "rS");
+    fp = fopen("szoveg.txt", "r");
+    char string[100];
     if (fp == NULL)
     {
         perror ("  A fájl nem található\n\n");
