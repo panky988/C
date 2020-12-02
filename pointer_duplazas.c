@@ -6,8 +6,8 @@ int main()
 {
     int szam = 5;
     int * p = szam*2;
-    printf("\n  Beadandó feladatok / Függvények / 1.feladat\n");
-    printf("  -------------------------------------------\n");
+    printf("\n  Függvények / Pointer duplázás\n");
+    printf("  -----------------------------\n");
     printf("  A bekért szám: %d.\n  A duplája: %d.\n\n",szam,p);
     return 0;
 }
