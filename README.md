@@ -1,2 +1,1 @@
 # C
-C programozás feladatok.
