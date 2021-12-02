@@ -1,0 +1,350 @@
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+
+void printoo(int *ptr)
+{
+  for(int i=0;i<4;i++)
+  {
+      if(i<3)
+      {
+          printf("%d",ptr[i]);
+          printf(".");
+      }
+      else
+      {
+          printf("%d",ptr[i]);
+      }
+  }
+}
+
+
+void ranjoo(int *arr,int r,int crrPos){
+       int nid=0,bid=r-1,i=crrPos+1,x=1;
+
+       if(r==1){
+         bid=255;
+       }
+        printf("\n\t\Id\t\t  Halozati azonsito\t\t\t Broadcast");
+        while(bid<=255){
+                printf("\n\n\t\t  %d\t\t  ",x);
+            arr[crrPos]=nid;
+            i=crrPos+1;
+                while(i<4){
+                    arr[i]=0;
+                    i++;
+                }
+            printoo(arr);
+            printf("\t\t\t");
+            arr[crrPos]=bid;
+                i=crrPos+1;
+                while(i<4){
+                    arr[i]=255;
+                    i++;
+                }
+            printoo(arr);
+          nid=nid+r;
+          bid=bid+r;
+          x++;
+        }
+        printf("\n\n");
+}
+
+
+
+int main(int argc,char *argv[])
+{
+    int oct[4],cidr=0,i=0,count=0,tindex=0,x=0;
+    int  error=0,subnetmask[4]={0,0,0,0},sub=0;
+    int wildcard[4]={0,0,0,0},network=1,netbit;
+    int hostbit,networkid[4]={0,0,0,0};
+    long long int host=1,valid_host;
+    char *ip=argv[1], temp[3];
+    int gateway[4]={0,0,0,0};
+    int netrange[4]={0,0,0,0},range=1;
+
+
+    if(argc==3){
+        if((strcmp(argv[2],"-h")!=0) && (strcmp(argv[2],"-a")!=0) && (strcmp(argv[2],"-n")!=0) && (strcmp(argv[2],"-r")!=0)){
+            printf("\n\tERROR : Unknown switch used");
+            printf("\n\n\tProbald ki \">>FILE NAME<< help\" parancsot tovabbi reszletekert\n\n");
+            exit(0);
+        }
+    }
+
+    if(argc==1||strcmp(argv[1],"help")==0)
+    {
+        printf("\n\tIP calculator:");
+        printf(" Az alhalozat kiszamitasahoz adja meg az IP cimet CIDR ertekkel vagy anelkul");
+        printf("\n\n\nHasznalat:");
+        printf("\n\t>>FILE NAME<< [<IP>|<IP/CIDR>] [-a|-n|-h|-r|-g]");
+        printf("\n\nKAPCSOLOK:");
+        printf("\n\t-a     Mutasd az osszeset.");
+        printf("\n\t-h     Informaciok megjelenitese a Host-rol.");
+        printf("\n\t-n     A halozatra vonatkozo informaciok megjelenitese.");
+        printf("\n\t-r     Informaciok megjelenitese a teljes halozatrol es a hatotavolsagrol.");
+        printf("\n\thelp   Jelenitse meg ezt a sugo opciot");
+        printf("\n\n\PELDA:");
+        printf("\n\t>>FILE NAME<< 192.168.23.1 -a");
+        printf("\n\t>>FILE NAME<< 192.168.23.1/24 -a");
+        printf("\n\t>>FILE NAME<< 192.168.23.1/12 -n");
+        printf("\n\n\nNOTE:  Ha nem adod meg a CIDR erteket, akkor alapertelmezett lesz.\n\n\n");
+        return 0;
+    }
+
+    else if(argc>=2)
+    {
+
+        if((strlen(argv[1])>18) || (strlen(argv[1])<7))
+        {
+            printf("\n\n\t\t\tErvenytelen ip cim\n\n\n");
+        }
+        else
+            {
+                // Convert IP(String) to IP(int)
+                while(count<4)
+                {
+                  while(ip[i]!='.' && i<(strlen(argv[1])))
+                   {
+                    if(ip[i]=='/')
+                      {
+                        cidr++;
+                        break;
+                      }
+                    else
+                      {
+                        temp[tindex]=ip[i];
+                        tindex++;
+                        i++;
+                      }
+                   }
+                    oct[count]=atoi(temp);
+                    tindex=0;
+                    temp[0]=0;
+                    temp[1]=0;
+                    temp[2]=0;
+                    count++;
+                    i++;
+              }
+
+for(int j=0;j<4;j++)
+{
+    if((oct[j]<0 || oct[j]>=256))
+    {
+        printf("\n\n\tErvenytelen IP cim");
+        error++;
+        return 1;
+    }
+}
+// CIDR érték hozzárendelése az osztályos IP-címhez
+        if(cidr==0)
+              {
+                if(oct[0]>=0 && oct[0]<=126)
+                    {
+                        cidr=8;
+                    }
+                else if(oct[0]>=128 && oct[0]<=191)
+                    {
+                        cidr=16;
+                    }
+                else if(oct[0]>=192 && oct[0]<=223)
+                    {
+                        cidr=24;
+                    }
+                else if(oct[0]>=224 && oct[0]<=239)
+                    {
+                        cidr=32;
+                    }
+                else if(oct[0]>=240 && oct[0]<=255)
+                    {
+                        printf("\n\nEz az IP-cím az E osztályba tartozik, és a hadsereg használja");
+                        return 1;
+                    }
+              }
+        // Assigning cidr for Classless ip address
+        else{
+                while(strlen(argv[1])>i)
+                 {
+                    temp[tindex]=ip[i];
+                    tindex++;
+                    i++;
+                 }
+                 cidr=atoi(temp);
+                netbit=cidr%8;
+                for(i=0;i<netbit;i++)
+                   {
+                      network= network * 2;
+                   }
+            }
+        }
+    }
+//Host-ok szama
+    hostbit=32-cidr;
+    for(i=0;i<hostbit;i++)
+      {
+        host*=2;
+      }
+// Host-ok
+  valid_host=host-2;
+
+
+  //CIDR
+    if(cidr<=0||cidr>=33)
+    {
+        printf("\n\n\t\t\tErvenytelen CIDR");
+        error++;
+        return 1;
+    }
+
+    if(cidr%8==0)
+    {
+        sub=255;
+    }
+    else if(cidr%8==1)
+    {
+        sub=128;
+    }
+    else if(cidr%8==2)
+    {
+        sub=192;
+    }
+    else if(cidr%8==3)
+    {
+        sub=224;
+    }
+    else if(cidr%8==4)
+    {
+        sub=240;
+    }
+    else if(cidr%8==5)
+    {
+        sub=248;
+    }
+    else if(cidr%8==6)
+    {
+        sub=252;
+    }
+    else if(cidr%8==7)
+    {
+        sub=254;
+    }
+
+// Netmask
+    i=cidr;
+    while(i>8)
+    {
+        subnetmask[x]=255;
+        x++;
+        i=i-8;
+    }
+    subnetmask[x]=sub;
+    x++;
+    while(x<4)
+    {
+        subnetmask[x]=0;
+        x++;
+    }
+//Kiegeszito maszk
+for(x=0;x<4;x++)
+    {
+        wildcard[x]=255-subnetmask[x];
+    }
+// Halozati azonosito
+for(x=0;x<4;x++)
+{
+    networkid[x]=(subnetmask[x])&(oct[x]);
+}
+
+
+// Atjaro
+
+  for(x=0;x<4;x++)
+  {
+    gateway[x]=networkid[x];
+  }
+ gateway[3]=(networkid[3])+1;
+
+
+
+
+if(error==0)
+  {
+    printf("\n\n\t\tIP Address = ");
+    for(i=0;i<4;i++)
+      {
+          if(i<3)
+          {
+              printf("%d",oct[i]);
+              printf(".");
+          }
+          else
+          {
+              printf("%d",oct[i]);
+          }
+      }
+    //printf("/%d",cidr);
+
+    printf("\n\t\tNetmask = ");
+      for(i=0;i<4;i++)
+      {
+          if(i<3)
+          {
+              printf("%d",subnetmask[i]);
+              printf(".");
+          }
+          else
+          {
+              printf("%d",subnetmask[i]);
+          }
+      }
+  }
+
+   // Terjedelem
+        x=i=0;
+
+        while(i<(hostbit%8))
+            {
+                range=range*2;
+                i++;
+            }
+        range;
+
+     i=0;
+    while(i<4){
+        if(subnetmask[i]==255){
+            netrange[i]=oct[i];
+            i++;
+        }
+        else{
+            break;
+        }
+    }
+        //i--;
+
+    if(argc==3){
+        if((strcmp(argv[2],"-h")==0) || (strcmp(argv[2],"-a")==0))
+        {
+            printf("\n\n\tHost informaciok:\n");
+            printf("\n\t\tHost-ok szama = %lli",host);
+            printf("\n\t\tHasznalhato Host-ok szama = %lli",valid_host);
+        }
+       if((strcmp(argv[2],"-n")==0) || (strcmp(argv[2],"-a")==0))
+        {
+            printf("\n\n\tHalozati informaciók:\n");
+            printf("\n\t\Halozatok szama = %d",network);
+            printf("\n\t\tHalozati azonosito = ");
+            printoo(networkid);
+            printf("\n\t\tAlapertelmezett atjaro = ");
+            printoo(gateway);
+            printf("\n\t\tKiegeszito maszk = ");
+            printoo(wildcard);
+        }
+      if((strcmp(argv[2],"-r")==0) || (strcmp(argv[2],"-a")==0))
+      {
+        printf("\n\n\tA halozat terjedelme:\n");
+        ranjoo(netrange,range,i);
+      }
+    }
+
+return 0;
+}
