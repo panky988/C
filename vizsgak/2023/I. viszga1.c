@@ -1,3 +1,4 @@
+//elég kiiratni az i-t
 #include <stdio.h>
 #include <stdlib.h>
 
