@@ -1,4 +1,4 @@
-//for ciklusban
+//egy intervallum utolsó számjegyeinek kiiratása
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -16,7 +16,7 @@ int main()
 
 VAGY
 
-//egyéni bekéréssel
+//egy egyedi szám utolsó számjegyének kiiratása
 #include <stdio.h>
 #include <stdlib.h>
 
